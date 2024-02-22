@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url(../Desktop/ID\ calculator.jpg);
+        }
+        #calculator {
+            margin: 0 auto;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgb(165, 81, 128);
+        }
+        input[type="number"], input[type="submit"] {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h2>ID Calculator</h2>
+        <form id="idForm">
+            <label for="idNumber">Enter your ID number:</label>
+            <input type="number" id="idNumber" name="idNumber" required>
+            <input type="submit" value="Calculate" onclick="calculateAge(event)">
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateAge(event) {
+            event.preventDefault();
+            var idNumber = document.getElementById('idNumber').value;
+            // Extract the birth year from the ID number (assuming the ID number format contains the birth year)
+            var birthYear = idNumber.substr(0, 2); // Extracting the first two digits of the ID number
+            // Assuming the birth year is in YY format, we'll add 1900 or 2000 based on regulations or requirements.
+            birthYear = (parseInt(birthYear) > 21) ? 1900 + parseInt(birthYear) : 2000 + parseInt(birthYear);
+            var currentYear = new Date().getFullYear();
+            var age = currentYear - birthYear;
+
+            document.getElementById('result').innerText = "Your age is: " + age + " years old.";
+        }
+    </script>
+</body>
+</html>
+
